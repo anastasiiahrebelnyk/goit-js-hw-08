@@ -88,36 +88,80 @@ refs.galleryEl.insertAdjacentHTML('beforeend', markup);
 
 refs.galleryEl.addEventListener('click', (event) => {
   event.preventDefault();
+  if (event.target.nodeName !== 'IMG') {
+    return
+  }
+  showModal(event.target.dataset.source);
 });
 
-let modalInstance;
+function showModal(imageUrl) {
+  const instance = basicLightbox.create(`
+    <img src="${imageUrl}" width="800" height="600">
+`)
 
-function showModal() {
-   modalInstance = basicLightbox.create(
-    `
-      <div class="modal" style="width: 1112px; height:640px; background-color:red;"></div>
-    `,
-    {
-      onShow: () => {
-        console.log('OPEN MODAL');
-        document.addEventListener('keydown', handleCloseModal);
-      },
-      onClose: () => {
-        console.log('CLOSE MODAL');
-        document.removeEventListener('keydown', handleCloseModal);
-      },
-    },
-  );
-
-  modalInstance.show();
+instance.show()
 }
 
 
-  function handleCloseModal(e) {
-  console.log(e.code);
 
-  if (e.code === 'Escape') {
-    modalInstance.close();
-  }
-}
 
+//!================================
+// const instance = basicLightbox.create(`
+//     <div class="modal">
+//         <p>
+//             Your first lightbox with just a few lines of code.
+//             Yes, it's really that simple.
+//         </p>
+//     </div>
+// `)
+
+// const instance = basicLightbox.create(`
+//     <img src="assets/images/image.png" width="800" height="600">
+// `)
+
+// instance.show()
+
+// const instance = basicLightbox.create(`
+//     <img src="${galleryEl.original}" width="800" height="600">
+// `)
+
+// instance.show(galleryEl);
+
+//!=======================
+
+// let modalInstance;
+
+// function showModal() {
+//    modalInstance = basicLightbox.create(
+//     `
+//       <div class="modal" style="width: 1112px; height:640px; background-color:red;">
+//       ,
+//       </div>
+//     `,
+//     {
+//       onShow: () => {
+//         console.log('OPEN MODAL');
+//         document.addEventListener('keydown', handleCloseModal);
+//       },
+//       onClose: () => {
+//         console.log('CLOSE MODAL');
+//         document.removeEventListener('keydown', handleCloseModal);
+//       },
+//     },
+//   );
+
+//   modalInstance.show();
+// }
+
+
+//   function handleCloseModal(e) {
+//   console.log(e.code);
+
+//   if (e.code === 'Escape') {
+//     modalInstance.close();
+//   }
+// }
+
+// showModal(refs.galleryEl);
+
+//!==========================================
