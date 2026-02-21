@@ -67,7 +67,7 @@ const images = [
 const refs = {
   galleryEl: document.querySelector('.gallery'),
   
-}
+};
 
 const markup = images
     .map(item => `<li class="gallery-item">
@@ -97,11 +97,10 @@ refs.galleryEl.addEventListener('click', (event) => {
 function showModal(imageUrl) {
   const instance = basicLightbox.create(`
     <img src="${imageUrl}" width="800" height="600">
-`)
+`);
 
 instance.show()
-}
-
+};
 
 
 
